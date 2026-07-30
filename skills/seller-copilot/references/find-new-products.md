@@ -77,6 +77,10 @@ State the estimate disclaimer once. Show `—` for unavailable values.
 
 - **Landed import cost is not available here.** For imported candidates, treat cost as
   seller-supplied — see [import-vs-domestic.md](import-vs-domestic.md).
+- **A stock budget does not translate into units.** A budget constrains the seller's **unit
+  cost**, which the marketplace does not show — only selling prices. Use selling price as an
+  upper-bound proxy, say that is what you did, and ask for unit cost before implying how many
+  units the budget buys or what margin it leaves.
 - **Daily product tracking is not available.** This is a point-in-time screen; ongoing
   monitoring needs a fresh run and a previous snapshot to compare against.
 - Kits and bundles are harder to read than single items — say so rather than treating a kit

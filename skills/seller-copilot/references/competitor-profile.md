@@ -16,13 +16,20 @@ this repo does exactly that; prefer it.
 
 Via JoomPulse, for the named seller:
 
-- **Reputation and medal** — the trust and professionalisation signal
-- **Location** — city and state
-- **Average monthly revenue and sales**
-- **Sales over the last 60 to 365 days**
-- **Sales trend** — rising, flat or falling
-- **Listing and catalogue counts**
-- **Cancellation rate**
+Mark provenance per figure as you report it — this profile mixes the two kinds, and getting it
+backwards in either direction misleads the seller:
+
+- **Reputation and medal** — real. The trust and professionalisation signal
+- **Location** — real. City and state
+- **Sales over the last 60 to 365 days** — real completed-sales counters, not modelled
+- **Sales trend** — real. Rising, flat or falling
+- **Cancellation rate** — real
+- **Average monthly revenue and sales** — **estimates**
+- **Listing and catalogue counts** — as published
+
+Do not blanket-label the whole profile as estimated. The completed-sales counter and the
+cancellation rate are exactly the figures a seller should be able to trust, and calling them
+estimates pushes them to discount the most solid evidence in the profile.
 
 For a **brand** rather than a single shop: list the sellers carrying it, their share and their
 growth, and flag which are **official stores** versus resellers. That distinction changes how
@@ -73,7 +80,9 @@ State the estimate disclaimer once. Show `—` for unavailable values.
 
 ## Boundaries
 
-- Revenue and sales are estimates, not the competitor's books.
+- **Estimated** monthly revenue and sales are estimates, not the competitor's books. The
+  completed-sales counter, sales trend, reputation, medal and cancellation rate are real
+  marketplace history — report them as such rather than sweeping everything into one caveat.
 - **No stored history.** Period-over-period comparison requires the seller to supply the earlier
   table.
 - Off-marketplace data, where available, describes search behaviour and not marketplace sales —

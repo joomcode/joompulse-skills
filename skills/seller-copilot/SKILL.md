@@ -68,8 +68,14 @@ MCP setup before it can analyse marketplace data.
   seller asks about another marketplace, say that it falls outside what **this skill**
   does — do not claim JoomPulse holds no data for it, which may not be true — and still
   answer the Mercado Livre part in full, rather than refusing the whole request.
-- **Sales, orders, revenue and GMV are JoomPulse estimates**, not real transactions. Price,
-  rating and review counts are real history.
+- **Sales, orders, revenue and GMV are JoomPulse estimates**, not real transactions.
+- **Real marketplace history**, by contrast: price, rating and review counts, and a seller's
+  reputation, medal, cancellation rate and completed-sales counters. Do not label these
+  estimates — calling a real figure an estimate destroys trust just as surely as the reverse,
+  and it pushes the seller to discount a number they could have relied on.
+- **A figure derived from estimates is itself an estimate** — average ticket, revenue per
+  seller, share of category. Never present one as real. "Ticket" in particular reads like
+  "price", which *is* real; the two are not the same thing.
 - **Read-only.** This skill analyses; it never changes a listing, price or stock.
 - **No real-time alerts.** JoomPulse provides periodic snapshots. Change-over-time answers
   need a previous snapshot the seller supplies.
@@ -105,6 +111,13 @@ Only ask about what you genuinely need to run the analysis. Rules:
 - **Pre-select a sensible default** and say what it is.
 - **Ask once.** If the seller does not answer, or no answer is possible, proceed with the
   defaults, state the assumption in the answer, and never block waiting for input.
+- **Have a default for the intent itself.** Step 1 says not to guess when the request is too
+  vague to classify — that holds whenever the seller *can* answer. Where no answer is
+  possible at all, "don't guess" and "never block" would otherwise contradict each other, so
+  resolve it this way: default to a market-opportunity overview of the category the seller
+  named, say that is the assumption, and ask for the category as the next step if none was
+  named. Never present figures for a category the seller never mentioned as though they were
+  theirs.
 
 Common things worth asking, by intent:
 
@@ -145,16 +158,17 @@ another; there is no need to announce the internal steps to the seller.
 | Why doesn't my listing sell? | `references/listing-optimization.md` |
 | Why don't I win the buy-box? | the **my-product-vs-catalog** skill |
 | Where do I trail my competitors, parameter by parameter? | `references/benchmark.md` |
+| Why did my sales drop? | `references/trends-and-seasonality.md` first — separate a seasonal dip from a real decline before reacting — then `references/benchmark.md` to see whether a competitor overtook them |
 
 **Market intel**
 
 | The question | Read |
 |---|---|
 | Who are my competitors? | `references/discover-competitors.md` |
-| Tell me about this seller or brand | `references/competitor-profile.md` (or the **seller-overview-tracker** skill for tracking one over time) |
+| Tell me about this seller or brand — a competitor's, or the seller's own store | `references/competitor-profile.md` (or the **seller-overview-tracker** skill for tracking one over time) |
 | What do they sell that I don't? How do our prices compare? | `references/assortment-and-price-gaps.md` |
 | Who dominates this market? How concentrated is it? | `references/market-structure.md` |
-| What are people searching for? | `references/keyword-intel.md` (or the **top-keywords-in-my-category** skill) |
+| What are people searching for? | `references/keyword-intel.md`. The **top-keywords-in-my-category** skill returns the same ranking faster, but read the "hard limit" section of `keyword-intel.md` either way and carry that caveat into the answer: a per-term product count measures how many sellers target the term, never how many shoppers search it, and presenting it as "most searched" is materially misleading |
 | Rank the sellers / brands in a category | the **top-sellers-in-category**, **top-brand-position-tracker** skills |
 | What changed since last period? | the **category-monitor**, **product-change-monitor** skills — each needs a previous snapshot from the seller |
 

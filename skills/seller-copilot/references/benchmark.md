@@ -15,6 +15,15 @@ one connected, ask for the identifier; if it is unavailable, fall back to a publ
 their listings against the category and **say clearly which was used** — the public version is
 coarser and should never be presented as the connected-store benchmark.
 
+**Keep the scorecard shape in the fallback.** Without an identifier there is no measured value
+for the seller, so the bands below cannot be assigned on their behalf — but do not drop the
+structure and hand back a general market report instead, which loses the point of the analysis.
+Give one row per parameter with the category norm and a **conditional** band the seller can place
+themselves in: "free shipping — about half the category offers it and nearly all the leaders do;
+**if you don't, you are losing on this parameter**." Then ask them to say where they stand, or to
+supply the identifier so the bands become exact. The output is a scorecard they can complete, not
+a report they have to interpret.
+
 ## Method
 
 Compare the seller's listing against its competitor set on each parameter — price, shipping,
