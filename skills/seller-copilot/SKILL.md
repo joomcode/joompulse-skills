@@ -140,7 +140,7 @@ another; there is no need to announce the internal steps to the seller.
 | The question | Read |
 |---|---|
 | Is this category worth entering? | `references/category-evaluation.md` (or the **category-opportunity-index** skill) |
-| Which growing niches should I look at? | the **growing-leaf-category-tracker** skill |
+| Which growing niches should I look at? | the **growing-leaf-category-tracker** skill — see the handoff caveats below |
 | Find me products to sell | `references/find-new-products.md` |
 | Is *this specific* product worth selling? | `references/validate-product.md` |
 | When should I stock? Is it seasonal? | `references/trends-and-seasonality.md` |
@@ -168,9 +168,24 @@ another; there is no need to announce the internal steps to the seller.
 | Tell me about this seller or brand — a competitor's, or the seller's own store | `references/competitor-profile.md` (or the **seller-overview-tracker** skill for tracking one over time) |
 | What do they sell that I don't? How do our prices compare? | `references/assortment-and-price-gaps.md` |
 | Who dominates this market? How concentrated is it? | `references/market-structure.md` |
-| What are people searching for? | `references/keyword-intel.md`. The **top-keywords-in-my-category** skill returns the same ranking faster, but read the "hard limit" section of `keyword-intel.md` either way and carry that caveat into the answer: a per-term product count measures how many sellers target the term, never how many shoppers search it, and presenting it as "most searched" is materially misleading |
+| What are people searching for? | `references/keyword-intel.md` (or the **top-keywords-in-my-category** skill — see the handoff caveats below) |
 | Rank the sellers / brands in a category | the **top-sellers-in-category**, **top-brand-position-tracker** skills |
 | What changed since last period? | the **category-monitor**, **product-change-monitor** skills — each needs a previous snapshot from the seller |
+
+**Caveats that must survive a handoff**
+
+Handing work to a focused skill is usually the right call — it is faster and more direct. But a
+focused skill states only the caveats its own job needs, so where a `references/` file makes a
+caveat mandatory, **that caveat is still yours to carry** into the final answer. Two cases:
+
+- **Keyword counts.** A per-term product count measures how many sellers target the term, never
+  how many shoppers search it — high means crowded, not popular. Presenting it as "most searched"
+  is materially misleading. Carry this whenever such a count appears, however the ranking was
+  produced. See the hard-limit section of `references/keyword-intel.md`.
+- **Growth rankings.** Drop niches with tiny absolute revenue before ranking by growth rate. A
+  small base produces enormous percentages, so an unfiltered ranking is mostly noise. Show the
+  absolute figure beside the percentage so the seller can judge. See
+  `references/trends-and-seasonality.md`.
 
 **Analyses that depend on another**
 
