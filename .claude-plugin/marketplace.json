@@ -6,20 +6,20 @@
   },
   "metadata": {
     "description": "Public JoomPulse skills marketplace.",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
-      "name": "pulse-skills",
+      "name": "joompulse-skills",
       "source": "./",
       "description": "Public JoomPulse agent skills for product research and marketplace workflows.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Joom",
         "url": "https://joompulse.com"
       },
-      "homepage": "https://github.com/joomcode/pulse-skills",
-      "repository": "https://github.com/joomcode/pulse-skills",
+      "homepage": "https://github.com/joomcode/joompulse-skills",
+      "repository": "https://github.com/joomcode/joompulse-skills",
       "license": "MIT",
       "category": "productivity",
       "tags": [

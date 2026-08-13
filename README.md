@@ -24,15 +24,20 @@ sellers and teams.
 If you have the Claude terminal installed, run these commands in it one at a time:
 
 ```bash
-/plugin marketplace add joomcode/pulse-skills
-/plugin install pulse-skills@joomcode
+/plugin marketplace add joomcode/joompulse-skills
+/plugin install joompulse-skills@joomcode
 ```
 
 After installation, start a new session so the skill metadata is loaded.
 
+Installing the plugin also configures the JoomPulse MCP connector for you — run
+`/mcp`, pick **joompulse**, and sign in. You can skip the manual setup below.
+
 ## Connect the JoomPulse MCP (required)
 
 To use these skills you first need to connect the **JoomPulse MCP** — it provides the live market data they run on, and without it the skills won't work.
+
+If you installed via the Claude terminal, the connector is already configured; just sign in with `/mcp`. The steps below are for Claude chat and Claude Cowork, where you add it by hand.
 
 > **Get access and details:** https://joompulse.com/mcp-connector
 
