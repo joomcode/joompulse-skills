@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "joompulse": {
+      "type": "http",
+      "url": "https://joompulse.com/mcp"
+    }
+  }
+}

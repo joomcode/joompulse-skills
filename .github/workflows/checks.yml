@@ -1,0 +1,23 @@
+name: checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Public-safety grep
+        run: bash scripts/check-public-safety.sh
+
+      - name: Manifest and skill consistency
+        run: bash scripts/check-manifests.sh
+
+      - name: Claude plugin validate
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude plugin validate . --strict
