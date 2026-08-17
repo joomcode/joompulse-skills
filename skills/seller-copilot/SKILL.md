@@ -1,25 +1,27 @@
 ---
 name: seller-copilot
 description: >
-  Deeper Mercado Livre (Brasil) seller analyses on JoomPulse data, beyond what a
-  single skill in this repo answers: real margins and ML fees ("minha margem
-  real", "how much do I actually make", "taxas do ML"); pricing and price wars
-  ("qual preço cobrar", "estou caro?"); is a product worth selling ("devo vender
-  este produto", "vale a pena"); finding new products ("o que vender agora");
-  vetting a supplier catalogue and import-vs-domestic ("vale a pena importar");
-  fixing a listing that does not sell ("meu anúncio não vende", "melhorar meu
-  anúncio"); who my competitors are and where I lose to them ("quem são meus
-  concorrentes", "onde estou perdendo", "o que eles vendem que eu não vendo");
-  market structure ("quem domina a categoria"); trends and when to stock
-  ("quando estocar", "sazonalidade"). Also takes vague or multi-part requests
-  ("me ajuda a crescer", "por onde começo") and asks one or two questions first.
-  Sales and revenue are JoomPulse estimates, not real transactions.
+  Deeper Mercado Livre (Brasil) and Shopee Brasil seller analyses on JoomPulse
+  data, beyond what a single skill in this repo answers: real margins and fees
+  ("minha margem real", "taxas do ML"); pricing and price wars ("qual preço
+  cobrar", "estou caro?"); is a product worth selling ("vale a pena vender
+  isso"); finding new products ("o que vender agora"); vetting a supplier and
+  import-vs-domestic ("vale a pena importar"); a listing that does not sell
+  ("meu anúncio não vende"); who my competitors are and where I lose to them
+  ("quem são meus concorrentes", "onde estou perdendo"); market structure ("quem
+  domina a categoria"); trends and when to stock ("quando estocar",
+  "sazonalidade"). Covers both marketplaces, including Shopee ("vender na
+  Shopee", "minha loja na Shopee"), and asks which one when unclear. Also takes
+  vague or multi-part requests ("me ajuda a crescer", "por onde começo") and
+  asks one or two questions first. Sales and revenue are JoomPulse estimates,
+  not real transactions.
 ---
 
 # Seller Copilot
 
-This skill is the **consultant front door** for Mercado Livre (Brasil) sellers working
-with JoomPulse data. It handles two kinds of request that a single focused skill does not:
+This skill is the **consultant front door** for sellers working with JoomPulse data, on
+**both marketplaces it covers — Mercado Livre (Brasil) and Shopee Brasil**. It handles two
+kinds of request that a single focused skill does not:
 
 1. **Vague or compound questions** — "help me grow my store", "por onde começo", "analisa
    minha operação" — where the seller does not yet know which analysis they need.
@@ -34,7 +36,12 @@ consolidated, verdict-first answer**.
 
 ## When to use another skill instead
 
-If the request maps cleanly onto a single focused skill in this repo, use that skill —
+**Only for Mercado Livre.** Every focused skill in this repo is Mercado Livre only, so
+handing a **Shopee** question to one returns Mercado Livre data to a Shopee seller — a wrong
+answer that looks right. For Shopee there is nothing to defer to: do the analysis here, from
+the `references/shopee-*` files.
+
+For a Mercado Livre request that maps cleanly onto a single focused skill, use that skill —
 it is faster and more direct. In particular:
 
 - One category's opportunity snapshot → **category-opportunity-index**
@@ -64,10 +71,15 @@ MCP setup before it can analyse marketplace data.
 
 ## Scope
 
-- **Mercado Livre (Brasil) only.** The analyses here cover Mercado Livre Brasil. If the
-  seller asks about another marketplace, say that it falls outside what **this skill**
-  does — do not claim JoomPulse holds no data for it, which may not be true — and still
-  answer the Mercado Livre part in full, rather than refusing the whole request.
+- **Mercado Livre (Brasil) and Shopee Brasil.** Both are covered, with different depth —
+  see [which-marketplace.md](references/which-marketplace.md). Any other marketplace falls
+  outside what this skill does; say so and still answer the in-scope part in full.
+- **Never mix the two marketplaces in one query, table or total.** They are separate
+  datasets with different grains and estimate methods; a combined figure is a wrong number,
+  not a fuller picture. Comparing them means two analyses side by side, in prose.
+- **Shopee coverage is narrower.** No keyword data, no seasonality or long-run trend
+  (history begins May 2026), no buy-box, no medals, no fee data. Name the gap rather than
+  answering it from Mercado Livre.
 - **Sales, orders, revenue and GMV are JoomPulse estimates**, not real transactions.
 - **Real marketplace history**, by contrast: price, rating and review counts, and a seller's
   reputation, medal, cancellation rate and completed-sales counters. Do not label these
@@ -85,6 +97,24 @@ MCP setup before it can analyse marketplace data.
 - **Match the seller's language.** One language per answer, no mixing.
 
 ## How to use this skill
+
+### Step 0 — Settle the marketplace first
+
+Before any analysis, know which marketplace the question is about. Getting this wrong wastes
+the whole analysis and hands the seller figures for a market they do not sell on.
+
+- The seller said so → take them at their word.
+- An identifier beginning **`MLB`**, or a `mercadolivre.com.br` link → Mercado Livre. A **bare
+  10–11 digit number**, or a `shopee.com.br` link → Shopee.
+- The request only makes sense on one of them — buy-box, medals, keywords, fulfilment
+  programme are Mercado Livre concepts → Mercado Livre.
+- **Otherwise ask, in one short question, before querying.** Do not guess and do not default
+  to Mercado Livre because it is the richer dataset.
+
+Read [which-marketplace.md](references/which-marketplace.md) whenever the answer is not
+immediate, the seller mentions both, or the request assumes a capability one marketplace
+lacks. It carries the full capability comparison and how to handle a genuine both-marketplace
+request.
 
 ### Step 1 — Classify the request
 
@@ -135,6 +165,10 @@ Pick the **minimal set** that answers the question. Read the matching file in
 `references/` and follow its procedure. Run them in this same conversation, one after
 another; there is no need to announce the internal steps to the seller.
 
+**The tables below are for Mercado Livre.** For a Shopee request, use the Shopee table further
+down instead — the procedures differ, and the Mercado Livre files assume mechanics and data
+Shopee does not have.
+
 **What to sell**
 
 | The question | Read |
@@ -171,6 +205,24 @@ another; there is no need to announce the internal steps to the seller.
 | What are people searching for? | `references/keyword-intel.md` (or the **top-keywords-in-my-category** skill — see the handoff caveats below) |
 | Rank the sellers / brands in a category | the **top-sellers-in-category**, **top-brand-position-tracker** skills |
 | What changed since last period? | the **category-monitor**, **product-change-monitor** skills — each needs a previous snapshot from the seller |
+
+**Shopee**
+
+Use these instead of everything above when the marketplace is Shopee. There are no focused
+Shopee skills to defer to.
+
+| The question | Read |
+|---|---|
+| Is this category worth entering? | `references/shopee-category-evaluation.md` |
+| Who dominates this category? How concentrated is it? | `references/shopee-market-structure.md` |
+| What should I sell? | `references/shopee-find-new-products.md` |
+| Is *this specific* item worth selling? | `references/shopee-validate-product.md` |
+| How has this item been selling over time? | `references/shopee-item-momentum.md` |
+| Who are my competitors? | `references/shopee-discover-competitors.md` |
+| Tell me about this shop | `references/shopee-competitor-profile.md` |
+| What do they sell that I don't? How do prices compare? | `references/shopee-assortment-and-price-gaps.md` |
+| What price should I charge? | `references/shopee-pricing.md` |
+| Keywords, seasonality, when to stock, buy-box, medals, fees, margin | **Not available on Shopee** — name the gap, offer the nearest real alternative, and never answer it from Mercado Livre data. See [which-marketplace.md](references/which-marketplace.md) |
 
 **Caveats that must survive a handoff**
 
@@ -219,7 +271,25 @@ the refined request — no need to re-classify unless the topic changed.
 ## Reference files
 
 Each file documents one analysis procedure. Read the one you need; they are not meant to
-be read all at once.
+be read all at once. Files prefixed `shopee-` are Shopee Brasil; the rest are Mercado Livre.
+
+- [Which marketplace?](references/which-marketplace.md) — how to decide, what each
+  marketplace can and cannot answer, and how to handle a request spanning both. **Read this
+  first whenever the marketplace is not obvious.**
+
+**Shopee Brasil**
+
+- [Category evaluation](references/shopee-category-evaluation.md),
+  [market structure](references/shopee-market-structure.md),
+  [find new products](references/shopee-find-new-products.md),
+  [validate a product](references/shopee-validate-product.md),
+  [item momentum](references/shopee-item-momentum.md),
+  [discover competitors](references/shopee-discover-competitors.md),
+  [shop profile](references/shopee-competitor-profile.md),
+  [assortment and price gaps](references/shopee-assortment-and-price-gaps.md),
+  [pricing](references/shopee-pricing.md).
+
+**Mercado Livre (Brasil)**
 
 - [Margin and fees](references/margin-and-fees.md) — net margin from public ML fee tables
   plus seller-supplied costs; what each fee takes.
