@@ -10,7 +10,8 @@ description: >
   for my listings", and the pt-BR equivalents "palavras-chave mais buscadas",
   "termos em alta na categoria", "o que as pessoas pesquisam", "melhores
   palavras-chave para meus anúncios". The keywords and ranks are real search-trend
-  data, not estimates. For category market size and opportunity, use the
+  data, not estimates. Mercado Livre (Brasil) only — Shopee has no search-demand
+  data, so a Shopee request cannot be answered here. For category market size and opportunity, use the
   category-opportunity-index skill; for ranking the sellers in a category, use the
   top-sellers-in-category skill.
 ---
@@ -39,7 +40,11 @@ JoomPulse MCP setup before it can list a category's keywords.
 
 ## Scope
 
-- **Mercado Livre (Brasil) only.** Other marketplaces are out of scope.
+- **Mercado Livre (Brasil) only.** JoomPulse also covers Shopee Brasil, but
+  **Shopee has no search-keyword or search-demand data at all**, so this analysis
+  exists only for Mercado Livre. Never answer a Shopee keyword question with
+  Mercado Livre terms, and never substitute a count of competing items for search
+  demand — that measures supply, not what shoppers type.
 - **Real data, not an estimate.** The keywords, ranks, and competing-product
   counts come from Mercado Livre search trends — say so; do not add the sales
   estimate disclaimer that other skills use.
@@ -103,6 +108,12 @@ The seller should never see a system or stack error — only a friendly next ste
 
 - **No keywords for the category:** say plainly that no trending terms were found
   and suggest a broader or adjacent category.
+- **The seller asks about Shopee:** say plainly that search-keyword data does not
+  exist for Shopee, so there is nothing to rank — do not improvise a substitute.
+  Offer the nearest real alternative instead: Shopee category analytics, or the
+  best-selling items in the Shopee category by estimated recent sales. If it is
+  unclear which marketplace they mean (an identifier beginning `MLB` is Mercado
+  Livre, a bare 10–11 digit number is Shopee), ask before answering.
 - **Data temporarily unavailable:** retry once quietly; if it is still down, say
   the data is temporarily unavailable and to try again. Never paste internal error
   text, HTTP codes, or field names to the seller.

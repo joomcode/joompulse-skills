@@ -59,6 +59,18 @@ Click **Add → Connect**, sign in with your JoomPulse account — you're ready 
 
 ## Skills
 
+JoomPulse covers two marketplaces — **Mercado Livre (Brasil)** and **Shopee Brasil** — and they
+are separate datasets. Each skill decides the marketplace first, from what you say or from the
+link or identifier you paste, and asks if it cannot tell. Data from the two is never mixed in one
+table or one total.
+
+**Most skills below cover both marketplaces. Four are Mercado Livre only, because the Shopee data
+does not exist:** `top-keywords-in-my-category` (Shopee has no search-demand data),
+`my-product-vs-catalog` (Shopee has no catalogue or buy-box), `top-brand-position-tracker`
+(Shopee brand coverage is too incomplete to rank) and `top-sellers-in-category` (no per-seller
+revenue within a Shopee category yet). Those four say so and offer the nearest alternative rather
+than answering with the wrong marketplace's numbers.
+
 | Skill | What it does | Typical requests | Typical requests (pt-BR) |
 | --- | --- | --- | --- |
 | [`pulse-find-exact-same-product`](skills/pulse-find-exact-same-product/SKILL.md) | Finds product listings that appear to represent the same real-world product as a reference item. | "find the same product", "match this product", "find duplicate listings" | "encontrar o mesmo produto", "achar produto igual", "encontrar anúncios duplicados" |
