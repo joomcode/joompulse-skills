@@ -50,7 +50,11 @@ JoomPulse MCP setup before it can compare a listing against its catalog.
 
 ## Scope
 
-- **Mercado Livre (Brasil) only.** Other marketplaces are out of scope.
+- **Mercado Livre (Brasil) only.** JoomPulse also covers Shopee Brasil, but
+  **Shopee has no catalogue and no buy-box** — an item belongs to one shop, so
+  there is no set of rival offers on the same product to be measured against and
+  no buy-box to win. This analysis therefore exists only for Mercado Livre; never
+  apply its logic or its verdict wording to a Shopee item.
 - **It compares within one catalog product.** The comparison is the seller versus
   the other sellers of the same catalog product (the same buy-box), not a search
   for similar products.
@@ -136,6 +140,14 @@ Respond in pt-BR, leading with the verdict:
 
 ## Edge Cases
 
+- **The item is on Shopee, not Mercado Livre:** say plainly that Shopee has no
+  catalogue and no buy-box, so there is no rival-offer set on the same product to
+  compare against — the question cannot be answered there, and Mercado Livre logic
+  must not be borrowed. Offer the nearest real alternative: how the item compares
+  with others in its Shopee category on price, rating and reviews, labelled as a
+  public-market comparison rather than a buy-box verdict. If the marketplace is
+  unclear, ask first — an identifier beginning `MLB` is Mercado Livre, a bare
+  10–11 digit number is Shopee.
 - **The input is a catalog product, not a single listing:** ask which listing is the
   seller's before comparing.
 - **The product is not part of a catalog:** there is no shared buy-box to compete in;

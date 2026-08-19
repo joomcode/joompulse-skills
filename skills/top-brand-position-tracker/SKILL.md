@@ -51,7 +51,11 @@ JoomPulse MCP setup before it can rank brands and track their positions.
 
 ## Scope
 
-- **Mercado Livre (Brasil) only.** Other marketplaces are out of scope.
+- **Mercado Livre (Brasil) only.** JoomPulse also covers Shopee Brasil, but
+  **Shopee brand coverage is incomplete by construction** — only items with tracked
+  sales carry a brand, so brands are systematically missing and a ranking would
+  imply a completeness the data cannot support. Brand shares and brand leaderboards
+  must not be computed for Shopee; this analysis exists only for Mercado Livre.
 - **Sales and revenue are JoomPulse estimates** derived from historical listing
   data — not real transactions. Disclose this in every output. By contrast,
   **review count is real Mercado Livre history** — say so, it is a strength of the
@@ -226,6 +230,13 @@ separator (`1.250`). Keep the ⚠️ estimate disclaimer on every output.
 
 The seller should never see a system or stack error — only a friendly next step.
 
+- **The seller asks about Shopee:** say plainly that Shopee brand data is too
+  incomplete to rank — only items with tracked sales carry a brand, so a
+  leaderboard would look authoritative while missing whole brands. Do not produce a
+  Shopee brand ranking or brand share. Offer instead what Shopee data does support:
+  category structure and concentration, or the best-selling items in the category.
+  If the marketplace is unclear, ask first — an identifier beginning `MLB` is
+  Mercado Livre, a bare 10–11 digit number is Shopee.
 - **No category given or an ambiguous name:** ask for the category (name,
   identifier, or JoomPulse link) before going further.
 - **No active listings or no brands in the category:** say no brand data is

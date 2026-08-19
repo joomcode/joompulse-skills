@@ -76,14 +76,23 @@ nearest real alternative** — never substitute the other marketplace's figure.
 
 ## Which files to read once decided
 
-- **Mercado Livre** → the unprefixed reference files, and the focused Mercado Livre skills in
-  this repo where one already does the job.
-- **Shopee** → the `shopee-` prefixed reference files.
+- **Mercado Livre** → the unprefixed reference files, and the focused skills in this repo where
+  one already does the job.
+- **Shopee** → the `shopee-` prefixed reference files, and the focused skills that cover Shopee.
 
-**The focused skills in this repo are Mercado Livre only.** Every one of them scopes itself to
-Mercado Livre, so handing a Shopee question to one returns Mercado Livre data for a Shopee
-seller — a wrong answer that looks right. For Shopee there is no focused skill to defer to: use
-the `shopee-` references and do the analysis here.
+**Most focused skills in this repo now cover both marketplaces.** Each one decides the
+marketplace first and then reads that marketplace's own data, so a Shopee question handed to one
+is answered with Shopee data. Check the skill's own scope before deferring to it.
+
+**Four are Mercado Livre only, by design:**
+
+- **keywords and search demand** — Shopee has no search data at all;
+- **buy-box / catalogue comparison** — Shopee has no catalogue and no buy-box;
+- **brand rankings** — Shopee brand coverage is too incomplete to rank;
+- **top sellers in a category** — Shopee has no per-seller revenue within a category yet.
+
+For those four, do not hand a Shopee question over: name the gap and offer the nearest real
+alternative from the `shopee-` references.
 
 ## Things that differ enough to catch you out
 
