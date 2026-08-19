@@ -207,7 +207,7 @@ must belong to the same marketplace.
 
 Build a clean search query from the title or photo description, plus a broadened
 fallback query. On Shopee, titles mix Portuguese, English and Chinese, so prepare
-**short tokens in both languages** instead of one long phrase.
+**short terms in both languages** instead of one long phrase.
 
 ### Step 2 — Find analogs
 
@@ -220,7 +220,7 @@ Both the keyword and photo paths feed the same analog pipeline:
      For the photo route, the image-search results play this role.
    - **Shopee:** there is **no image search and no search by meaning**.
      Comparables come from the subject's own category plus a title search — and
-     because titles mix Portuguese, English and Chinese, search **short tokens in
+     because titles mix Portuguese, English and Chinese, search **short terms in
      both languages** rather than one long phrase, then merge the hits.
 2. **Augment when recall is thin.** Optionally widen the candidate set using
    category and keyword search, or constrain to the subject's category. On Shopee,
@@ -341,7 +341,7 @@ The seller should never see a system or stack error — only a friendly next ste
   the seller to confirm.
 - **Search returns nothing:** an empty result for a niche or non-pt-BR query is
   normal — retry once with an English or broadened query, then move on. On Shopee,
-  also try short tokens in the other language before giving up. If search is
+  also try short terms in the other language before giving up. If search is
   temporarily unavailable, say so briefly and rely on the other data.
 - **No catalogue or buy-box on Shopee:** never present catalogue status, a buy-box
   winner, a buy-box price or a seller count for a Shopee item, and never map a

@@ -10,7 +10,7 @@ description: >
   o mesmo produto", "anúncios duplicados", "esse produto já existe na Shopee",
   "procurar esse item na Shopee". Ask which marketplace when unclear; never mix
   the two. On Mercado Livre the shared catalogue anchors a match; Shopee has no
-  shared catalogue, so matching is a short-token title search confirmed by
+  shared catalogue, so matching is a title search on short terms, confirmed by
   brand, category and a plausible price band, and photo search is unsupported
   there.
 ---
@@ -147,10 +147,10 @@ numbers.
   widen to a title search inside the category if that set is thin.
 - **Shopee:** title search is a **literal substring match**, and item titles mix
   Portuguese, English and Chinese. So:
-  - search several **short tokens** instead of one long precise phrase — a long
+  - search several **short terms** instead of one long precise phrase — a long
     phrase typically returns nothing at all;
-  - try both the Portuguese and the English wording of the same token;
-  - **scope the search to a category**, because a short generic token on its own
+  - try both the Portuguese and the English wording of the same term;
+  - **scope the search to a category**, because a short generic term on its own
     comes back full of unrelated bundles and accessories.
 - Prefer a compact candidate set first, then broaden only when recall is clearly
   too low.
@@ -225,11 +225,11 @@ enough. Empty field → `—`; never guess or fabricate.
   whether a Mercado Livre product is also on Shopee, run the search twice and
   report the two sides separately.
 - **No image-similarity search on Shopee:** say so in one short sentence and
-  offer the token search based on your own reading of the photo instead. Never
+  offer a term search based on your own reading of the photo instead. Never
   imply a photo match was performed.
 - **Nothing found on Shopee:** an empty result is a floor, not a verdict —
   coverage includes only items with at least one lifetime sale, and a literal
-  title search misses the wordings you did not try. Offer to try other tokens
+  title search misses the wordings you did not try. Offer to try other terms
   or another category.
 - **Market data temporarily unavailable:** retry once quietly; if it is still
   down, say market data is temporarily unavailable and to try again shortly.
