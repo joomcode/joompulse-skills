@@ -300,11 +300,28 @@ Shopee:
 
 ## Visualization
 
-When the client can render inline visuals, present metric cards and, when the
-data supports it, the appropriate chart; otherwise present a short text version
-of the cards. **The product table always renders as markdown** — never inside a
-widget — so the competition signal stays legible. Render a chart only when the
-data supports it, and skip it otherwise.
+**Render the visuals every time the data supports them.** As soon as the analysis
+is done, present the cards and charts described below as a **self-contained visual
+panel** — an artifact where the client renders artifacts, an inline widget where
+it renders widgets. Do not ask permission first, do not describe the panel instead
+of drawing it, and do not offer it as an optional extra: the cards and charts are
+part of the answer, not a follow-up.
+
+- **Order:** the cards first, then the charts, then the written read.
+- **The data table always stays markdown in the response text**, never inside the
+  panel — the panel carries cards and charts only.
+- **The estimate disclaimer always stays in the response text** as well.
+- **Skip an individual chart when its own data threshold is not met** (each
+  threshold is stated below): a chart nobody can read is worse than no chart.
+  Skipping one chart never means skipping the panel.
+- **Only the cards and charts specified below.** Do not invent extra ones, and do
+  not promote a categorical value to a bar — a chip or plain text is the honest
+  rendering for it.
+- **If no visual surface is available at all**, fall back to the markdown table
+  plus the same figures written as text cards. Never block on visuals, and never
+  leave the answer without its numbers.
+
+The panel contains:
 
 **Cards** — three summary cards:
 
@@ -321,14 +338,10 @@ used — strongest uncontested niches first, each bar labelled with a short prod
 name. **Skip the bar entirely when there are fewer than four products** — show
 only the cards and the table.
 
-**Otherwise (no inline visuals)**: render the three cards as a short text block,
-one line each, and — only when there are four or more products — a tiny text list
-of the top niches by estimated revenue over that same window. **Never block on
-visuals**; if inline rendering is unavailable or fails, fall straight through to
-the markdown output. Round numbers and use pt-BR formatting (for example `R$
-1.234`, `1.234 vendas`). If you show Mercado Livre seller medals as coloured
-chips, keep the standard palette; on Shopee there are no medals, so write the
-shop tier as plain text and never colour it as a rung on a ladder.
+Round numbers and use pt-BR formatting (for example `R$ 1.234`, `1.234 vendas`).
+If you show Mercado Livre seller medals as coloured chips, keep the standard
+palette; on Shopee there are no medals, so write the shop tier as plain text and
+never colour it as a rung on a ladder.
 
 ## Notes & Guardrails
 

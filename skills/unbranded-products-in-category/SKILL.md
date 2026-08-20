@@ -196,12 +196,28 @@ Shopee:
 
 ## Visualization
 
-When the client can render inline visuals, present metric cards and a chart;
-otherwise fall back to the markdown table plus text cards. Never block on visuals.
-The product table always renders as markdown in the response text, on every
-surface, and the ⚠️ disclaimer always stays in the text. No product images.
+**Render the visuals every time the data supports them.** As soon as the analysis
+is done, present the cards and charts described below as a **self-contained visual
+panel** — an artifact where the client renders artifacts, an inline widget where
+it renders widgets. Do not ask permission first, do not describe the panel instead
+of drawing it, and do not offer it as an optional extra: the cards and charts are
+part of the answer, not a follow-up.
 
-When inline visuals are available:
+- **Order:** the cards first, then the charts, then the written read.
+- **The data table always stays markdown in the response text**, never inside the
+  panel — the panel carries cards and charts only.
+- **The estimate disclaimer always stays in the response text** as well.
+- **Skip an individual chart when its own data threshold is not met** (each
+  threshold is stated below): a chart nobody can read is worse than no chart.
+  Skipping one chart never means skipping the panel.
+- **Only the cards and charts specified below.** Do not invent extra ones, and do
+  not promote a categorical value to a bar — a chip or plain text is the honest
+  rendering for it.
+- **If no visual surface is available at all**, fall back to the markdown table
+  plus the same figures written as text cards. Never block on visuals, and never
+  leave the answer without its numbers.
+
+The panel contains:
 
 - **Three cards:** number of unbranded products found — on Shopee label it as a
   lower bound — total estimated sales for the window in use, and average ticket.
@@ -210,11 +226,11 @@ When inline visuals are available:
   the chart only when there are enough products (skip it under about four), and
   never block on it.
 
-Presentation rules: render a chart only when the data supports it; any column with
-movement uses a word header, never a bare "Δ". The medal palette (platina = purple,
-ouro = amber, prata = blue, sem medalha = white with a thin border) is Mercado Livre
-only — on Shopee write the shop tier as plain text and never colour it as if it were
-a rung on a ladder.
+Presentation rules: no product images; render a chart only when the data supports
+it; any column with movement uses a word header, never a bare "Δ". The medal palette
+(platina = purple, ouro = amber, prata = blue, sem medalha = white with a thin
+border) is Mercado Livre only — on Shopee write the shop tier as plain text and
+never colour it as if it were a rung on a ladder.
 
 ## Notes & Guardrails
 
