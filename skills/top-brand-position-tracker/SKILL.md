@@ -173,12 +173,28 @@ to see how positions moved.
 
 ## Visualization
 
-Layer a visual summary on top of the markdown table — never instead of it. The
-visuals summarize; the **ranked table is always the deliverable**. Pick the path
-by surface and never block waiting for a visual.
+**Render the visuals every time the data supports them.** As soon as the analysis
+is done, present the cards and charts described below as a **self-contained visual
+panel** — an artifact where the client renders artifacts, an inline widget where
+it renders widgets. Do not ask permission first, do not describe the panel instead
+of drawing it, and do not offer it as an optional extra: the cards and charts are
+part of the answer, not a follow-up.
 
-**When the client can render inline visuals,** present metric cards plus the bar
-chart:
+- **Order:** the cards first, then the charts, then the written read.
+- **The data table always stays markdown in the response text**, never inside the
+  panel — the panel carries cards and charts only.
+- **The estimate disclaimer always stays in the response text** as well.
+- **Skip an individual chart when its own data threshold is not met** (each
+  threshold is stated below): a chart nobody can read is worse than no chart.
+  Skipping one chart never means skipping the panel.
+- **Only the cards and charts specified below.** Do not invent extra ones, and do
+  not promote a categorical value to a bar — a chip or plain text is the honest
+  rendering for it.
+- **If no visual surface is available at all**, fall back to the markdown table
+  plus the same figures written as text cards. Never block on visuals, and never
+  leave the answer without its numbers.
+
+**The panel contains:**
 
 - **Three cards:**
   - **Marcas ativas** — the number of named brands in the ranking.
@@ -191,11 +207,6 @@ chart:
 - **Horizontal bar chart:** the top ~10 brands by **GMV estimado (semana)**,
   descending. Use a neutral single-hue ramp — this bar ranks size, it does not
   signal good or bad, so no semantic green/red.
-
-**Otherwise (a terminal or any client without inline visuals),** present the same
-three cards as a short text block (label and value per line) and let the markdown
-table itself carry the ranking. Do not attempt a visual widget; never block
-waiting for one.
 
 **Tables always render as markdown,** on every surface — the ranked table lives in
 the response text, never inside a rendered visual.

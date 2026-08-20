@@ -259,14 +259,28 @@ There is no JoomPulse category dashboard link for Shopee, so never invent one.
 
 ## Visualization
 
-When the client can render inline visuals, present the opportunity badge,
-metric cards, and the appropriate charts; otherwise fall back to a markdown
-table plus text cards. Never block on visuals — if the rich-visual path is
-unavailable for any reason, render the markdown fallback. The monthly indicators
-table always renders as markdown in the response text, on every surface, and the
-⚠️ estimate disclaimer always stays in the text.
+**Render the visuals every time the data supports them.** As soon as the analysis
+is done, present the cards and charts described below as a **self-contained visual
+panel** — an artifact where the client renders artifacts, an inline widget where
+it renders widgets. Do not ask permission first, do not describe the panel instead
+of drawing it, and do not offer it as an optional extra: the cards and charts are
+part of the answer, not a follow-up.
 
-When inline visuals are available, present in one panel:
+- **Order:** the cards first, then the charts, then the written read.
+- **The data table always stays markdown in the response text**, never inside the
+  panel — the panel carries cards and charts only.
+- **The estimate disclaimer always stays in the response text** as well.
+- **Skip an individual chart when its own data threshold is not met** (each
+  threshold is stated below): a chart nobody can read is worse than no chart.
+  Skipping one chart never means skipping the panel.
+- **Only the cards and charts specified below.** Do not invent extra ones, and do
+  not promote a categorical value to a bar — a chip or plain text is the honest
+  rendering for it.
+- **If no visual surface is available at all**, fall back to the markdown table
+  plus the same figures written as text cards. Never block on visuals, and never
+  leave the answer without its numbers.
+
+The panel contains:
 
 - **Opportunity badge** at the top: Alta 🟢 / Média 🟡 / Baixa 🔴 (show `—` if
   missing), with the marketplace and the reference month.
@@ -298,14 +312,6 @@ border). Any change or difference column uses a word as its header ("Variação"
 or "Era | Agora"), never a bare "Δ" symbol. Show a 🟢/🔴/🆕 legend only on a run
 where those symbols actually appear — never on a first or baseline run. Render a
 chart only when the underlying data supports it, and skip it otherwise.
-
-On a text-only surface, render the same information as markdown and text: the
-badge as a heading line, the five metrics as the indicators table or text cards,
-the trend as one short line describing the ~12-month direction (Mercado Livre
-only, and only when there are at least about six months of history), the
-concentration as a text value under its own marketplace's label (for example
-`Monopolização: 38% (baixa — bom)` on Mercado Livre), and the seasonality as a
-text chip line on Mercado Livre only.
 
 ## Notes & Guardrails
 

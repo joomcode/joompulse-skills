@@ -86,11 +86,28 @@ once, in place of the estimate disclaimer.
 
 ## Visualization
 
-When the client can render inline visuals, present metric cards and a chart;
-otherwise fall back to the markdown table plus text cards. Never block on visuals.
-The keywords table always renders as markdown, on every surface.
+**Render the visuals every time the data supports them.** As soon as the analysis
+is done, present the cards and charts described below as a **self-contained visual
+panel** — an artifact where the client renders artifacts, an inline widget where
+it renders widgets. Do not ask permission first, do not describe the panel instead
+of drawing it, and do not offer it as an optional extra: the cards and charts are
+part of the answer, not a follow-up.
 
-When inline visuals are available:
+- **Order:** the cards first, then the charts, then the written read.
+- **The data table always stays markdown in the response text**, never inside the
+  panel — the panel carries cards and charts only.
+- **The estimate disclaimer always stays in the response text** as well.
+- **Skip an individual chart when its own data threshold is not met** (each
+  threshold is stated below): a chart nobody can read is worse than no chart.
+  Skipping one chart never means skipping the panel.
+- **Only the cards and charts specified below.** Do not invent extra ones, and do
+  not promote a categorical value to a bar — a chip or plain text is the honest
+  rendering for it.
+- **If no visual surface is available at all**, fall back to the markdown table
+  plus the same figures written as text cards. Never block on visuals, and never
+  leave the answer without its numbers.
+
+The panel contains:
 
 - **Three cards:** number of keywords, the number-one term, and the least-disputed
   term (the one with the fewest competing products among the top).
@@ -99,8 +116,6 @@ When inline visuals are available:
   each is are visible at a glance. Optionally flag low-competition (opportunity)
   terms. Render the chart only when there are enough keywords (skip under about
   five).
-
-Presentation rules: render a chart only when the data supports it.
 
 ## Notes & Guardrails
 
