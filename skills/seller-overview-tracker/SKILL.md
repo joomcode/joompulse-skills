@@ -68,8 +68,11 @@ JoomPulse MCP setup before it can monitor a seller.
 - **Read-only.** The skill never signs in as the seller or modifies a listing; it
   does not store the snapshot — the user keeps the downloadable table and brings it
   back next period.
-- **Language:** respond in pt-BR by default; mirror another language only if the
-  user clearly uses it.
+- **Language:** write in the language of the message you are answering, and
+  default to pt-BR only when that is unclear. Never infer the language from the
+  store, its listings or the marketplace — those are Brazilian whatever
+  language the seller writes in, so a seller who asks in English gets the whole
+  report in English.
 - **The baseline is user-supplied.** Never claim a change without a previous table
   to compare against, and never infer or fabricate one from memory. The previous
   table must be for the **same seller on the same marketplace**.
@@ -170,8 +173,17 @@ own and the user is told to save it for next time.
 
 ## Output
 
-Respond in pt-BR by default. Present the result with no commentary about how it was
-produced. Lead with a short line naming the **marketplace** and the store.
+Respond in the language of the seller's request, default pt-BR. Present the
+result with no commentary about how it was produced. Lead with a short line
+naming the **marketplace** and the store.
+
+The column headers, labels and disclaimers below are written in pt-BR because
+that is the default. They are a template, not literal strings: when the seller
+writes in another language, translate all of them — the headers, row values
+such as `sim` / `não` / `ouro`, and the disclaimer — and keep the structure,
+the emoji and the `R$` money formatting, which stays the same in every language
+because the marketplace trades in reais. When the request is in English, no
+Portuguese is left anywhere in the answer.
 
 **Snapshot (always):** a markdown table `| Campo | Valor atual |` for the rows
 below, plus a downloadable `.csv` / `.xlsx` of the same data.

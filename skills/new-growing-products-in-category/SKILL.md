@@ -55,7 +55,11 @@ JoomPulse MCP setup before it can find new growing products in a category.
   historical listing data, on Shopee from the marketplace's own rounded sold
   counters refined with review movement. Use the matching disclaimer.
 - **Read-only.** The skill does not sign in as the seller or modify any listing.
-- **Language:** detect the seller's language and respond in it. Default to pt-BR.
+- **Language:** write in the language of the message you are answering, and
+  default to pt-BR only when that is unclear. Never infer the language from the
+  store, its listings or the marketplace — those are Brazilian whatever
+  language the seller writes in, so a seller who asks in English gets the whole
+  report in English.
 - **Keep the workflow invisible.** The seller wants the answer, not a play-by-
   play. If one approach does not return data, switch to another quietly; only if
   every approach fails do you say one short, friendly sentence.
@@ -153,8 +157,17 @@ numbers.
 
 ## Output
 
-Respond in the seller's language. Present the result with no commentary about how
-it was produced. Use plain markdown so it renders cleanly in any client.
+Respond in the language of the seller's request. Present the result with no
+commentary about how it was produced. Use plain markdown so it renders cleanly
+in any client.
+
+The column headers, labels and disclaimers below are written in pt-BR because
+that is the default. They are a template, not literal strings: when the seller
+writes in another language, translate all of them — the headers, row values
+such as `sim` / `não` / `ouro`, and the disclaimer — and keep the structure,
+the emoji and the `R$` money formatting, which stays the same in every language
+because the marketplace trades in reais. When the request is in English, no
+Portuguese is left anywhere in the answer.
 
 Lead with a short intro line naming the **marketplace**, the category and the
 three thresholds actually applied, and state that the listings are **ranked by
@@ -205,8 +218,8 @@ marketplaces: Mercado Livre reports weekly and monthly figures, Shopee reports
 
 Empty field → `—`; never guess or fabricate. Below the table, list the item codes
 explicitly so they are easy to copy — as clickable JoomPulse links on Mercado
-Livre, as Shopee item links on Shopee. You may translate the column headers into
-the seller's language.
+Livre, as Shopee item links on Shopee. You may translate the column headers
+into the language of the seller's request.
 
 **Disclaimer (every report) — use the variant for the marketplace you queried.**
 
@@ -286,9 +299,10 @@ The seller should never see a system or stack error — only a friendly next ste
 
 - **No listings survive the filters:** say that no new listings currently match
   these thresholds in this category, and offer to relax them (for example, a
-  larger day-on-air window or a lower monthly-sales floor). Keep it in pt-BR.
-  On Shopee, add that the list is a lower bound — only items with at least one
-  lifetime sale are tracked — so an empty result is not proof the niche is quiet.
+  larger day-on-air window or a lower monthly-sales floor). Keep it in the
+  language of the seller's request. On Shopee, add that the list is a lower
+  bound — only items with at least one lifetime sale are tracked — so an empty
+  result is not proof the niche is quiet.
 - **Category not found or ambiguous name:** list the candidate categories (name
   and level) and ask the user to pick one. If nothing matches, check the other
   marketplace before saying the category does not exist.

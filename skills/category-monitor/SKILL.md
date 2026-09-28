@@ -66,8 +66,11 @@ JoomPulse MCP setup before it can monitor a category.
 - **Read-only.** The skill never writes or modifies anything; it does not store
   the snapshot — the user keeps the downloadable table and brings it back next
   period.
-- **Language:** detect the seller's language and respond in it. Default to
-  pt-BR.
+- **Language:** write in the language of the message you are answering, and
+  default to pt-BR only when that is unclear. Never infer the language from the
+  store, its listings or the marketplace — those are Brazilian whatever
+  language the seller writes in, so a seller who asks in English gets the whole
+  report in English.
 - **The baseline is user-supplied.** Never claim a change without a previous
   table to compare against, and never infer or fabricate one from memory.
 
@@ -180,8 +183,16 @@ an incomplete month.
 
 ## Output
 
-Respond in the seller's language (default pt-BR). Name the marketplace the
-figures came from.
+Respond in the language of the seller's request (default pt-BR). Name the
+marketplace the figures came from.
+
+The column headers, labels and disclaimers below are written in pt-BR because
+that is the default. They are a template, not literal strings: when the seller
+writes in another language, translate all of them — the headers, row values
+such as `sim` / `não` / `ouro`, and the disclaimer — and keep the structure,
+the emoji and the `R$` money formatting, which stays the same in every language
+because the marketplace trades in reais. When the request is in English, no
+Portuguese is left anywhere in the answer.
 
 **Snapshot (always):** a markdown table `| Métrica | Valor atual |`, plus a
 downloadable `.csv` / `.xlsx` of the same data.

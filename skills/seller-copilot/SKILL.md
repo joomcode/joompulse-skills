@@ -94,7 +94,10 @@ MCP setup before it can analyse marketplace data.
 - **Not available from JoomPulse:** supplier or landed cost, true unit cost, return and
   refund rates, and traffic or conversion funnels. If the question depends on one of these,
   say so and ask the seller to supply the figure — do not estimate it silently.
-- **Match the seller's language.** One language per answer, no mixing.
+- **Match the language of the seller's request.** One language per answer, no
+  mixing, and never infer the language from the store or its listings — those are
+  Brazilian whatever language the seller writes in. When the request is in English,
+  no Portuguese is left anywhere in the answer.
 
 ## How to use this skill
 
@@ -323,8 +326,9 @@ be read all at once. Files prefixed `shopee-` are Shopee Brasil; the rest are Me
 - **One-line caption above every table**, saying what it shows — scope, sort order, and
   snapshot date.
 - **Verdict before table**, always.
-- **Portuguese column labels** with the prose in the seller's language: `Vendas estimadas`,
-  `Receita estimada`, `Preço`, `Oportunidade`, `Monopolização`, `Tendência`.
+- **Portuguese column labels** with the prose in the language of the seller's
+  request: `Vendas estimadas`, `Receita estimada`, `Preço`, `Oportunidade`,
+  `Monopolização`, `Tendência`.
 - **Top 10 rows by default** (all, if fewer than 10). When more exist, **state the total
   and offer the rest or a CSV** — never truncate silently. Equally, **never pad a list to
   reach the requested count**: if the seller asked for 10 and the data yields 6, return 6
@@ -342,6 +346,14 @@ be read all at once. Files prefixed `shopee-` are Shopee Brasil; the rest are Me
 - Where a score is expressed as "percent of competitors better than you", state that
   **lower means you are ahead**, and that it is relative to the competitor set rather than
   an absolute grade.
+
+The column headers, labels and disclaimers below are written in pt-BR because
+that is the default. They are a template, not literal strings: when the seller
+writes in another language, translate all of them — the headers, row values
+such as `sim` / `não` / `ouro`, and the disclaimer — and keep the structure,
+the emoji and the `R$` money formatting, which stays the same in every language
+because the marketplace trades in reais. When the request is in English, no
+Portuguese is left anywhere in the answer.
 
 ## Notes and guardrails
 

@@ -58,8 +58,11 @@ JoomPulse MCP setup before it can analyze a product or find competitors.
 - **Prices are marketplace prices only.** Do not surface sourcing prices,
   margins, or profit figures.
 - **Read-only.** The skill does not sign in as the seller or modify any listing.
-- **Language:** detect the seller's language and respond in it. Default to
-  pt-BR.
+- **Language:** write in the language of the message you are answering, and
+  default to pt-BR only when that is unclear. Never infer the language from the
+  store, its listings or the marketplace — those are Brazilian whatever
+  language the seller writes in, so a seller who asks in English gets the whole
+  report in English.
 - **Keep the workflow invisible.** The seller wants the answer, not a play-by-
   play. Do the analysis quietly and present only the result. If one approach to
   finding the product or its competitors does not work, switch to another
@@ -242,8 +245,16 @@ Both the keyword and photo paths feed the same analog pipeline:
 
 ## Output
 
-Respond in the seller's language. The visible reply contains only the result, in
-this order, with no commentary about how it was produced:
+Respond in the language of the seller's request. The visible reply contains
+only the result, in this order, with no commentary about how it was produced:
+
+The column headers, labels and disclaimers below are written in pt-BR because
+that is the default. They are a template, not literal strings: when the seller
+writes in another language, translate all of them — the headers, row values
+such as `sim` / `não` / `ouro`, and the disclaimer — and keep the structure,
+the emoji and the `R$` money formatting, which stays the same in every language
+because the marketplace trades in reais. When the request is in English, no
+Portuguese is left anywhere in the answer.
 
 1. An optional one-line framing sentence, naming the **marketplace**.
 2. The subject product card.
@@ -287,11 +298,12 @@ rating, reviews, favourites, cross-border shipping, photo count, shop tier, and 
 links column holding the item and shop links on Shopee. **No catalogue, buy-box
 or seller-count columns** — drop them, do not leave them blank.
 
-You may translate the column headers and card labels into the seller's language.
-Note that the sales windows are **not** the same on the two marketplaces: Mercado
-Livre reports weekly and monthly figures, Shopee reports 30-day figures only —
-label the Shopee columns as 30 days and never present a 30-day figure under a
-weekly or monthly heading. Empty field → `—`; never guess or fabricate.
+You may translate the column headers and card labels into the language of the
+seller's request. Note that the sales windows are **not** the same on the two
+marketplaces: Mercado Livre reports weekly and monthly figures, Shopee reports
+30-day figures only — label the Shopee columns as 30 days and never present a
+30-day figure under a weekly or monthly heading. Empty field → `—`; never guess
+or fabricate.
 
 **Disclaimer (every report) — use the variant for the marketplace you queried.**
 

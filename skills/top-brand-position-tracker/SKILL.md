@@ -65,8 +65,11 @@ JoomPulse MCP setup before it can rank brands and track their positions.
   and brings it back next period.
 - **The baseline is user-supplied.** Never claim a position change without a
   previous table to compare against, and never infer or fabricate one from memory.
-- **Language:** respond in pt-BR by default. If the seller clearly writes in
-  another language, mirror it; otherwise pt-BR.
+- **Language:** write in the language of the message you are answering, and
+  default to pt-BR only when that is unclear. Never infer the language from the
+  store, its listings or the marketplace — those are Brazilian whatever
+  language the seller writes in, so a seller who asks in English gets the whole
+  report in English.
 - **Keep the workflow invisible.** The seller wants the ranking, not a play-by-
   play. If one approach does not return data, switch to another quietly; only if
   every approach fails do you say one short, friendly sentence.
@@ -129,8 +132,9 @@ on its own (no movement column) and the user is told to save it for next time.
 
 ## Output
 
-Respond in the seller's language (pt-BR by default), with no commentary about how
-the result was produced. Use plain markdown so it renders cleanly in any client.
+Respond in the language of the seller's request (pt-BR by default), with no
+commentary about how the result was produced. Use plain markdown so it renders
+cleanly in any client.
 
 There is **one canonical brand-ranking table**, used everywhere (in the response
 text and mirrored by the downloadable file). One row per brand, sorted by current
@@ -215,8 +219,16 @@ the response text, never inside a rendered visual.
 ### Ranked table (always markdown, both surfaces)
 
 The ranked table is the **one canonical brand-ranking table defined in Output** —
-the same columns, in pt-BR, on every surface. It lives in the response text, never
-inside a rendered visual.
+the same columns on every surface. It lives in the response text, never inside
+a rendered visual.
+
+The column headers, labels and disclaimers below are written in pt-BR because
+that is the default. They are a template, not literal strings: when the seller
+writes in another language, translate all of them — the headers, row values
+such as `sim` / `não` / `ouro`, and the disclaimer — and keep the structure,
+the emoji and the `R$` money formatting, which stays the same in every language
+because the marketplace trades in reais. When the request is in English, no
+Portuguese is left anywhere in the answer.
 
 - **Standalone ranking:** columns `Posição | Marca | GMV estimado (semana) |
   Vendas est. (semana) | Anúncios | Avaliações | Preço médio` — **no `Variação`

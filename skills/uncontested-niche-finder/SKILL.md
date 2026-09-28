@@ -75,7 +75,11 @@ JoomPulse MCP setup before it can find uncontested niches.
   historical listing data, on Shopee from the marketplace's own rounded sold
   counters refined with review movement. Use the matching disclaimer.
 - **Read-only.** The skill does not sign in as the seller or modify any listing.
-- **Language:** detect the seller's language and respond in it. Default to pt-BR.
+- **Language:** write in the language of the message you are answering, and
+  default to pt-BR only when that is unclear. Never infer the language from the
+  store, its listings or the marketplace — those are Brazilian whatever
+  language the seller writes in, so a seller who asks in English gets the whole
+  report in English.
 - **Keep the workflow invisible.** The seller wants the niches, not a play-by-
   play. If one approach does not return data, switch to another quietly; only if
   every approach fails do you say one short, friendly sentence. Never fill gaps
@@ -201,9 +205,17 @@ numbers.
 
 ## Output
 
-Respond in the seller's language. Present the result with no commentary about how
-it was produced. The product table always renders as markdown so it reads
-cleanly in any client.
+Respond in the language of the seller's request. Present the result with no
+commentary about how it was produced. The product table always renders as
+markdown so it reads cleanly in any client.
+
+The column headers, labels and disclaimers below are written in pt-BR because
+that is the default. They are a template, not literal strings: when the seller
+writes in another language, translate all of them — the headers, row values
+such as `sim` / `não` / `ouro`, and the disclaimer — and keep the structure,
+the emoji and the `R$` money formatting, which stays the same in every language
+because the marketplace trades in reais. When the request is in English, no
+Portuguese is left anywhere in the answer.
 
 Lead with a short intro line naming the **marketplace** and the category — and on
 Shopee, the category level you actually worked at.
@@ -257,9 +269,9 @@ heading.
 Put the marketplace link on the product identifier in each row. When a cell is
 empty, show `—` rather than guessing. Below the table, briefly state what
 "uncontested niche" means here: sub-categories deeper than the third level that
-have **no platinum seller at all** among their listings on Mercado Livre, or **no
-Official store (Shopee Mall) seller at all** on Shopee. You may translate the
-column headers into the seller's language.
+have **no platinum seller at all** among their listings on Mercado Livre, or
+**no Official store (Shopee Mall) seller at all** on Shopee. You may translate
+the column headers into the language of the seller's request.
 
 **On Shopee, state this next to the verdict itself, not only in the guardrails:**
 only items with at least one lifetime sale are tracked, so an Official store

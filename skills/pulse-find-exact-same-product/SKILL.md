@@ -69,7 +69,11 @@ JoomPulse MCP setup before it can search or compare products.
   includes only items with at least one lifetime sale, and brand is recorded for
   tracked items only.
 - **Read-only.** The skill does not sign in as the seller or modify any listing.
-- **Language:** detect the seller's language and respond in it. Default to pt-BR.
+- **Language:** write in the language of the message you are answering, and
+  default to pt-BR only when that is unclear. Never infer the language from the
+  store, its listings or the marketplace — those are Brazilian whatever
+  language the seller writes in, so a seller who asks in English gets the whole
+  report in English.
 - **Keep the workflow invisible.** The seller wants the answer, not a play-by-
   play. If one approach does not return data, switch to another quietly; only if
   every approach fails do you say one short, friendly sentence.
@@ -194,9 +198,9 @@ numbers.
 
 ## Output Format
 
-Respond in the seller's language. Lead with a short line naming the
-**marketplace** and the reference product. Use a concise table when there are
-multiple candidates:
+Respond in the language of the seller's request. Lead with a short line naming
+the **marketplace** and the reference product. Use a concise table when there
+are multiple candidates:
 
 | Result | Product | Link | Why it matches |
 | --- | --- | --- | --- |

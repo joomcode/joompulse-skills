@@ -21,13 +21,14 @@ description: >
 
 This skill answers a single question for **one** category on **Mercado Livre
 (Brasil) or Shopee Brasil**: is it worth entering? Given a marketplace and a
-category named in free text, it reads that category's **opportunity index** (low,
-medium, or high) and its current monthly market indicators — estimated revenue,
-estimated sales, sellers, listings, and average ticket — then writes a short
-pt-BR summary that interprets the opportunity level together with how
-concentrated the market is and which way it is growing. On Mercado Livre the
-summary can also draw on a year of history and a seasonality read; on Shopee
-neither exists yet, and the report says so plainly instead of guessing.
+category named in free text, it reads that category's **opportunity index**
+(low, medium, or high) and its current monthly market indicators — estimated
+revenue, estimated sales, sellers, listings, and average ticket — then writes a
+short summary, in the language the seller wrote in, that interprets the
+opportunity level together with how concentrated the market is and which way it
+is growing. On Mercado Livre the summary can also draw on a year of history and
+a seasonality read; on Shopee neither exists yet, and the report says so
+plainly instead of guessing.
 
 This is a point-in-time snapshot, not a tracker. To rank the sellers inside a
 category, use the top-sellers-in-category skill. For the trending search terms
@@ -59,8 +60,11 @@ JoomPulse MCP setup before it can report a category's opportunity index.
   marketplace's own rounded sold counters refined with review movement. Use the
   matching disclaimer.
 - **Read-only.** The skill never writes or modifies anything.
-- **Language:** detect the seller's language and respond in it. Default to
-  pt-BR.
+- **Language:** write in the language of the message you are answering, and
+  default to pt-BR only when that is unclear. Never infer the language from the
+  store, its listings or the marketplace — those are Brazilian whatever
+  language the seller writes in, so a seller who asks in English gets the whole
+  report in English.
 - **Keep the workflow invisible.** The seller wants the answer, not a play-by-
   play. If one approach does not return data, switch to another quietly; only if
   every approach fails do you say one short, friendly sentence. Never fill gaps
@@ -173,13 +177,22 @@ Do not draw a trend and do not pass three points off as one: state plainly that 
 long-run trend is not available for Shopee yet, and report the snapshot plus the
 month-over-month change instead.
 
-### Step 4 — Build the report (pt-BR)
+### Step 4 — Build the report
 
-1. Lead with the **opportunity index**, prominently: 🟢 alto / 🟡 médio / 🔴
-   baixo (show `—` if it is missing), noting the marketplace, the category name
-   and level, and the month the figures describe.
+Write the whole report in the language of the message you are answering — not
+the language of the store or its listings, which are Brazilian either way.
+Every Portuguese word in this step and in Output is a pt-BR template: translate
+the badge wording, the table headers, the section labels and the disclaimer.
+Keep the emoji, the table structure and `R$` exactly as they are. When the
+message is in English, no Portuguese is left anywhere in the report.
+
+1. Lead with the **opportunity index**, prominently: 🟢 alto / 🟡 médio / 🔴 baixo
+   — pt-BR wording, translated for any other language, emoji unchanged — (show
+   `—` if it is missing), noting the marketplace, the category name and level,
+   and the month the figures describe.
 2. Show the monthly indicators table (see Output).
-3. Write a 2–4 sentence **resumo** that interprets the opportunity index
+3. Write a 2–4 sentence summary — labelled **Resumo** in pt-BR — that
+   interprets the opportunity index
    together with concentration and growth:
    - What the level means — high implies good room for new sellers; low implies
      little relative upside.
@@ -203,9 +216,17 @@ month-over-month change instead.
 
 ## Output
 
-Respond in the seller's language, default pt-BR, with no commentary about how the
-report was produced. The indicators table always renders as markdown so it shows
-cleanly in any client.
+Respond in the language of the seller's request, default pt-BR, with no
+commentary about how the report was produced. The indicators table always
+renders as markdown so it shows cleanly in any client.
+
+The column headers, labels and disclaimers below are written in pt-BR because
+that is the default. They are a template, not literal strings: when the seller
+writes in another language, translate all of them — the headers, row values
+such as `sim` / `não` / `ouro`, and the disclaimer — and keep the structure,
+the emoji and the `R$` money formatting, which stays the same in every language
+because the marketplace trades in reais. When the request is in English, no
+Portuguese is left anywhere in the answer.
 
 **Opportunity badge** — a heading line naming the marketplace, the category and
 the month the figures cover, for example:
@@ -236,6 +257,9 @@ cells show `—`.
 **Resumo** — the 2–4 sentence interpretation described in the workflow.
 
 **Disclaimer (every report) — use the variant for the marketplace you queried.**
+Each variant below carries the pt-BR wording and the English wording separated by
+` / `. Emit only the half that matches the language of the seller's request —
+never both halves and never the slash.
 
 Mercado Livre:
 
