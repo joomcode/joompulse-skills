@@ -134,8 +134,10 @@ deepest level the marketplace actually supports:
   different skill's territory, so hand it over rather than faking depth here.
 
 For each kept category, get the current monthly estimated revenue and sales, the
-number of active sellers, the number of products, and the month-over-month revenue
-growth. All five reported columns exist on both marketplaces.
+number of active sellers, the month-over-month growth of **both revenue and
+units**, the concentration of orders on the leading seller, and revenue per
+seller. Every reported column exists on both marketplaces, but concentration is
+computed differently on each — never compare that figure across marketplaces.
 
 On Shopee, **work out the most recent month explicitly** instead of trusting a
 latest-month indicator — that indicator is unreliable there — and state which month
@@ -144,14 +146,64 @@ the figures describe.
 ### Step 3 — Keep the fast-growing ones
 
 From those sub-categories, **keep only the ones that are growing fast** (strong
-month-over-month revenue growth), then order the kept niches by growth, fastest
-first. Use the always-positive monthly totals for size (revenue, sales,
-products); growth is the filter that selects the niches — never present a change
-figure as a total or as a table column.
+month-over-month revenue growth), then order the kept niches by revenue growth,
+fastest first.
+
+**Apply a size floor before ranking, and state it.** Month-over-month growth
+explodes off a near-zero base: a niche going from R$ 200 to R$ 1.600 reads +700%
+and leads the table over one that added hundreds of thousands. Set the floor
+**relative to the parent the seller named** — at least **0,02% of that category's
+estimated monthly revenue, and never below R$ 300 mil**. A fixed figure cannot
+serve both marketplaces, because they rank different units: deep leaf niches on
+Mercado Livre against whole level-3 categories on Shopee, which are far larger.
+Say under the table which floor was used and how many niches it excluded. Without
+a stated floor the same category returns a different leader from run to run.
+
+**Read revenue growth and unit growth together.** A niche can grow revenue while
+selling *fewer* units: the gain came from a higher average ticket, not from more
+demand, and a seller who wants volume should not enter it — say so plainly. The
+reverse, units growing faster than revenue, means the average price is falling:
+easier to enter, margin under pressure. Flag both cases.
+
+**Collapse a parent and its dominant child** — Mercado Livre only, since Shopee
+has nothing below the level being ranked. A deep tree ranks a sub-category and its
+own child separately, so a parent holding nearly all its revenue in one child
+appears twice and reads as two opportunities. Where a child accounts for almost
+all of its parent's revenue, keep one row, name the other beside it, and say they
+are the same niche — twelve rows should mean twelve choices.
+
+**Identify the surviving row by the same identifier every time.** Where a pair is
+collapsed, keep the row under the **parent** and name the child beside it. The
+identifier is the only way the seller can find the niche again, and the table is
+meant to be saved and compared next period — the same niche appearing under two
+different identifiers across runs defeats the purpose of showing one.
+
+**Then say which of the ranked niches is actually enterable.** Growth alone is not
+room:
+
+- **Concentration.** Where one seller holds a large share of the category's
+  orders, strong growth is not open space; name those niches and say the seller
+  would be taking on a dominant incumbent.
+- **Revenue per seller.** A large, fast-growing niche split across tens of
+  thousands of sellers is worth less than a smaller one with few. Name the best
+  and the worst rather than leaving the columns to be divided by hand.
+- **Seasonality — Mercado Livre only.** Where the category is marked seasonal with
+  a known peak month, say whether the growth is the start of the ramp (time to
+  position) or the middle of the curve (entering behind it). **Shopee carries no
+  seasonality data**: do not infer it there, and where the calendar suggests a
+  season say that as timing, not as data.
+
+Lead the written read with the most enterable niches — strong growth with low
+concentration — not simply the fastest-growing.
+
+Keep levels and changes distinct: use the always-positive monthly totals for size,
+and never present a change figure as if it were a total.
 
 Month-over-month revenue growth works on both marketplaces, and the growth ranking
 survives on each. On Shopee only about three months of history exist, so compare
-the most recent month with the one before it and read nothing longer-run into it.
+the most recent month with the one before it and read nothing longer-run into it —
+which makes the floor matter more there, not less, because a short history makes a
+percentage noisier.
 
 ## Output
 
@@ -163,22 +215,43 @@ folded into their level-3 ancestor and cannot be separated here.
 
 The ranking always renders as a markdown table:
 
-| Categoria | Qtd. vendedores | Receita (mês est.) | Vendas (mês est.) | Produtos |
-|---|--:|--:|--:|--:|
+| Categoria | Cresc. receita | Cresc. vendas | Qtd. vendedores | Receita (mês est.) | Vendas (mês est.) | Monopolização | Receita/vendedor |
+|---|--:|--:|--:|--:|--:|:--|--:|
 
-- Exactly these five columns on both marketplaces — fast growth is the filter that
-  selects the niches, not a displayed column.
-- On Mercado Livre each category links to its JoomPulse category dashboard page.
-  **There is no JoomPulse category dashboard link for Shopee rows** — leave the
-  name as plain text and never invent a link.
+- **Exactly these eight columns on both marketplaces.** Concentration and revenue
+  per seller are what turn a growth list into an entry decision, so they belong in
+  every run rather than only the ones where they occur to you.
+- **Show the growth the ranking is built on** — never rank on a number the table
+  does not display. Both growth columns are month-over-month.
+- **Monopolização** carries the tier and the raw value together, as `Baixa (0,180)`
+  — the tier alone hides how close two niches are.
+- **Full precision in the money columns on Mercado Livre** — `R$ 468.400,35`, never
+  `R$ 468 mil`: this is a ranking, and rounding collapses the rows into each other.
+  **Shopee is exempt.** Its figures are rebuilt from the platform's own rounded
+  sold counters, so exact digits there would be false precision — round Shopee
+  money to thousands and say once that the source is rounded.
+- **Identify each row by its category ID beside the name.** Neither marketplace has
+  a working per-category deep link: on Shopee there is none at all, and on Mercado
+  Livre a URL carrying a category identifier resolves to the same general
+  categories page. So give the seller the route in one line below the table and
+  **never render a per-row URL as though it opened that niche** — the ID is what
+  lets them find it, and a link that lands somewhere general while looking specific
+  is worse than none.
+- Under the table, state the size floor used, the period compared, and how many
+  niches were read against how many the ranking shows. **Give those counts
+  exactly, never rounded or hedged** — "about 900" cannot be checked against the
+  data, and a coverage claim nobody can audit is worth little more than none.
 
 **Disclaimer (every report) — use the variant for the marketplace you queried.**
 
 Mercado Livre:
 
-> ⚠️ Receita e vendas são estimativas do JoomPulse com base no histórico de
-> anúncios — não são transações reais. / Revenue and sales are JoomPulse
-> estimates based on historical listing data — not actual transactions.
+> ⚠️ Receita, vendas e crescimento da categoria são estimativas de mercado do
+> JoomPulse — não são transações reais, e o crescimento mês a mês herda essa
+> margem de erro. A base mensal de categorias pode ter até ~31 dias de defasagem.
+> / Category revenue, sales, and growth are JoomPulse market estimates — not
+> actual transactions, and the month-over-month growth inherits that margin of
+> error. The monthly category data can lag by up to ~31 days.
 
 Shopee:
 
@@ -243,7 +316,16 @@ The seller should never see a system or stack error — only a friendly next ste
   the bar on what counts as fast growth.
 - **Negative or odd growth:** some niches may be shrinking; surface that honestly
   rather than hiding it, and never invent a positive trend.
-- **Market data temporarily unavailable:** retry once quietly; if it is still
-  down, say market data is temporarily unavailable and to try again. Never paste
-  internal error text, HTTP codes, or field names to the seller.
-- **Never silently limit coverage** — if you rank only some of the niches, say so.
+- **Missing values.** Show `—` for any figure that is unavailable, and never print
+  `0` for something that was simply not measured.
+- **Market data temporarily unavailable:** retry once after a short pause rather
+  than immediately; if it still fails, say the service is busy and to try again in
+  a few minutes. Never paste internal error text, HTTP codes, or field names to
+  the seller.
+- **An empty result is not a failure.** A category with no niches above the floor
+  is an answer — say that, and offer to lower the floor or widen the parent. Never
+  report a genuine empty result as an outage.
+- **Never silently limit coverage.** State how many niches were read against how
+  many the ranking shows. Where the pull can be ordered by growth, one page is
+  enough for a top-N and nothing unread grows faster — say so; otherwise page until
+  a pull comes back short.
