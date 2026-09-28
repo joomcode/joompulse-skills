@@ -160,7 +160,8 @@ In the `Variação` cell (comparison only), mark each brand:
 
 The change column header is the **word `Variação`** — never a bare delta symbol.
 
-Below the table, include the category's **JoomPulse link**. On a comparison, state
+A category has no JoomPulse page, so the table carries no category link — never
+build one from a categoryId. On a comparison, state
 the period being compared (for example *"Comparado com a tabela de 12/06"*). On a
 standalone ranking, invite the user to save the table and send it back next period
 to see how positions moved.
