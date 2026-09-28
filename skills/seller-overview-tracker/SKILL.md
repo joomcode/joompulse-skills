@@ -60,8 +60,11 @@ JoomPulse MCP setup before it can monitor a seller.
 - **Sales and revenue are JoomPulse estimates** — estimated monthly revenue,
   estimated monthly sales, average ticket, and average price are not real
   transactions. Disclose this in every output.
-  - **On Mercado Livre**, by contrast, the rolling 60-day and 365-day sales counts,
-    the sales trend, and the cancellation rate are real Mercado Livre data.
+  - **On Mercado Livre**, by contrast, the rolling 60-day and 365-day sales counts
+    and the cancellation rate are real Mercado Livre data. **The monthly sales trend
+    is not.** It is the month-over-month change in JoomPulse's estimated sales, so it
+    carries the estimate caveat like every other estimated figure — never list it
+    among the real ones.
   - **On Shopee every sales figure is an estimate** — there is no real-data
     counterpart, so the Mercado Livre sentence above must never appear in a Shopee
     output. Only price, the buyer rating and the review count are real.
@@ -206,7 +209,8 @@ below, plus — where the client can produce files — a downloadable `.csv` /
 - Reputação (5 verde, a melhor … 1 vermelho, a pior)
 - Ticket médio / preço médio
 - Localização (cidade, estado, país)
-- Link JoomPulse do vendedor
+- Sem link — **sellers have no JoomPulse dashboard page**, so never build one
+  from a shopId
 
 **Snapshot / comparison rows (Shopee)** — same shape, with the marketplace's own
 fields:
@@ -231,8 +235,8 @@ fields:
   colour ladder. Say so explicitly rather than presenting them as the same field
 - Ticket médio / preço médio
 - Localização
-- Link da loja na Shopee — **there is no JoomPulse dashboard link for Shopee**, so
-  never invent one
+- Link da loja na Shopee — **there is no JoomPulse dashboard link for Shopee**
+  either, so never invent one
 
 For the three rows with **no Shopee equivalent at all** — cancellation rate, sales
 over the last 60 days and sales over the last 365 days — show `—` and state plainly
