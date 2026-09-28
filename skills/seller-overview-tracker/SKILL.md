@@ -151,12 +151,14 @@ numbers.
 ### Step 2 — Present today's snapshot and offer it for download
 
 Lay out the snapshot fields as a table, headed with the store name, the
-**marketplace** and the date. This table is the deliverable — and **offer it as a
-downloadable file (`.csv` / `.xlsx`)** so the user can save it and bring it back
-next period as the baseline. If any field comes back empty, show `—`; never
-substitute a guess. On Mercado Livre add the JoomPulse seller dashboard link; on
-Shopee link the shop on Shopee instead — **there is no JoomPulse dashboard link
-for Shopee**, so never invent one. On a standalone snapshot there is **no change
+**marketplace** and the date. This table is the deliverable. **Where the client
+can produce files, also offer it as a downloadable `.csv` / `.xlsx`** so the
+user can save it and bring it back next period as the baseline; where it
+cannot, the markdown table stands on its own — never offer a download you
+cannot deliver. If any field comes back empty, show `—`; never substitute a
+guess. On Mercado Livre add the JoomPulse seller dashboard link; on Shopee link
+the shop on Shopee instead — **there is no JoomPulse dashboard link for
+Shopee**, so never invent one. On a standalone snapshot there is **no change
 column and no color-dot legend** — just field and current value.
 
 ### Step 3 — Offer comparison, and compare if a previous table is supplied
@@ -186,7 +188,8 @@ because the marketplace trades in reais. When the request is in English, no
 Portuguese is left anywhere in the answer.
 
 **Snapshot (always):** a markdown table `| Campo | Valor atual |` for the rows
-below, plus a downloadable `.csv` / `.xlsx` of the same data.
+below, plus — where the client can produce files — a downloadable `.csv` /
+`.xlsx` of the same data.
 
 **Snapshot / comparison rows (Mercado Livre)** — pt-BR labels:
 

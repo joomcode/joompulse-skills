@@ -274,8 +274,8 @@ Shopee:
 > avaliações são histórico real da Shopee, e esse histórico começa em maio de
 > 2026.
 
-**Download** — offer a downloadable spreadsheet (`.xlsx` plus `.csv`) of the
-change table.
+**Download** — where the client can produce files, offer a downloadable
+spreadsheet (`.xlsx` plus `.csv`) of the change table.
 
 ## Notes & Guardrails
 

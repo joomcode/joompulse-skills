@@ -108,10 +108,11 @@ JoomPulse MCP setup before it can rank brands and track their positions.
 ### Step 2 — Present today's ranking and offer it for download
 
 Render today's brand-ranking table (head it with the category name and the date).
-This table is the deliverable — and **offer it as a downloadable file (`.csv` /
-`.xlsx`)** so the user can save it and bring it back next period as the baseline.
-On a standalone ranking there is **no movement column and no legend** — just the
-ranking.
+This table is the deliverable. **Where the client can produce files, also offer
+it as a downloadable `.csv` / `.xlsx`** so the user can save it and bring it
+back next period as the baseline; where it cannot, the markdown table stands on
+its own — never offer a download you cannot deliver. On a standalone ranking
+there is **no movement column and no legend** — just the ranking.
 
 ### Step 3 — Offer comparison, and compare if a previous table is supplied
 

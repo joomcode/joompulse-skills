@@ -161,10 +161,12 @@ Two Shopee-specific cautions:
 
 Render the snapshot table for **today**, headed with the marketplace, the
 category name and the date — and, on Shopee, the month the aggregates cover.
-This table is the deliverable — and **offer it as a downloadable file (`.csv` /
-`.xlsx`)** so the user can save it and bring it back next period as the
-baseline. On a standalone snapshot there is **no change column and no color-dot
-legend** — just metric and current value.
+This table is the deliverable. **Where the client can produce files, also offer
+it as a downloadable `.csv` / `.xlsx`** so the user can save it and bring it
+back next period as the baseline; where it cannot, the markdown table stands on
+its own — never offer a download you cannot deliver. On a standalone snapshot
+there is **no change column and no color-dot legend** — just metric and current
+value.
 
 ### Step 4 — Offer comparison, and compare if a previous table is supplied
 
@@ -194,8 +196,9 @@ the emoji and the `R$` money formatting, which stays the same in every language
 because the marketplace trades in reais. When the request is in English, no
 Portuguese is left anywhere in the answer.
 
-**Snapshot (always):** a markdown table `| Métrica | Valor atual |`, plus a
-downloadable `.csv` / `.xlsx` of the same data.
+**Snapshot (always):** a markdown table `| Métrica | Valor atual |`, plus —
+where the client can produce files — a downloadable `.csv` / `.xlsx` of the
+same data.
 
 - **Mercado Livre** rows: **Vendas (estimadas), Produtos, Produtos de catálogo,
   Vendedores, Distribuição de medalhas, Monopolização**.

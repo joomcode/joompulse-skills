@@ -114,9 +114,11 @@ alternative reading of the same rows, and leave the ranking itself by shop.
 ### Step 3 — Present today's leaderboard and offer it for download
 
 Render the leaderboard for **today** (head it with the category name and the date).
-This table is the deliverable — and **offer it as a downloadable file (`.csv` /
-`.xlsx`)** so the user can save it and bring it back next period as the baseline.
-On a standalone leaderboard there is **no movement column and no legend**.
+This table is the deliverable. **Where the client can produce files, also offer
+it as a downloadable `.csv` / `.xlsx`** so the user can save it and bring it
+back next period as the baseline; where it cannot, the markdown table stands on
+its own — never offer a download you cannot deliver. On a standalone
+leaderboard there is **no movement column and no legend**.
 
 ### Step 4 — Offer comparison, and compare if a previous leaderboard is supplied
 
@@ -144,7 +146,8 @@ the emoji and the `R$` money formatting, which stays the same in every language
 because the marketplace trades in reais. When the request is in English, no
 Portuguese is left anywhere in the answer.
 
-**Leaderboard (always):** a markdown table, plus a downloadable `.csv` / `.xlsx`:
+**Leaderboard (always):** a markdown table, plus — where the client can produce
+files — a downloadable `.csv` / `.xlsx`:
 
 | Vendedor | Medalha | Vendas méd. (mês) | Receita média (mês) | Vendas 365d | Taxa de cancelamento | Crescimento mensal | Marcas | Produtos (todos) | Produtos (com venda) | Envio internacional | Clássico | Premium |
 |---|:--|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|

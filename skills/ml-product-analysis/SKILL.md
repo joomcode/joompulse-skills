@@ -327,10 +327,11 @@ Shopee:
 > histórico são rastreados, então esta lista é um piso. Preço, classificação e
 > avaliações são histórico real da Shopee.
 
-**Download** — offer a downloadable spreadsheet (`.xlsx` plus `.csv`) of the
-subject and analogs. On Mercado Livre give separate Mercado Livre and JoomPulse
-link columns so the seller can see the source of every product's data; on Shopee
-give the item and shop link columns instead, and use the Shopee column set.
+**Download** — where the client can produce files, offer a downloadable
+spreadsheet (`.xlsx` plus `.csv`) of the subject and analogs. On Mercado Livre
+give separate Mercado Livre and JoomPulse link columns so the seller can see
+the source of every product's data; on Shopee give the item and shop link
+columns instead, and use the Shopee column set.
 
 ## Notes & Guardrails
 
