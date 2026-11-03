@@ -1,0 +1,23 @@
+{
+  "name": "joompulse",
+  "displayName": "JoomPulse",
+  "version": "0.2.0",
+  "description": "Mercado Livre and Shopee Brazil market analytics for e-commerce sellers: research products, sellers, categories, keywords and trends with price and sales history from the JoomPulse MCP.",
+  "author": {
+    "name": "Joom"
+  },
+  "homepage": "https://joompulse.com",
+  "repository": "https://github.com/joomcode/joompulse-skills",
+  "license": "MIT",
+  "keywords": [
+    "joompulse",
+    "ecommerce",
+    "mercadolivre",
+    "mercadolibre",
+    "shopee",
+    "brazil",
+    "analytics",
+    "product-research",
+    "mcp"
+  ]
+}

@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 This project follows semantic versioning.
 
+## Unreleased
+
+- Added a Cursor plugin manifest (`.cursor-plugin/plugin.json`) and a root
+  `mcp.json` so the same skills and JoomPulse MCP connector install in Cursor.
+
 ## 0.2.0 - 2026-08-13
 
 - Renamed the plugin from `pulse-skills` to `joompulse-skills` to match the

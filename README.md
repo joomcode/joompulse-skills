@@ -33,6 +33,18 @@ After installation, start a new session so the skill metadata is loaded.
 Installing the plugin also configures the JoomPulse MCP connector for you — run
 `/mcp`, pick **joompulse**, and sign in. You can skip the manual setup below.
 
+### Via Cursor
+1. In Cursor, open **Customize** in the sidebar.
+2. Find **JoomPulse** and select **Install**, then choose a project or user scope.
+3. Open **Settings → MCP**, find the **joompulse** server, and sign in with your
+   JoomPulse account.
+
+Skills are picked up automatically when a request matches them, or you can call
+one directly in chat, for example `/ml-product-analysis`.
+
+To try the plugin before it is published, clone this repository into
+`~/.cursor/plugins/local/joompulse` and run **Developer: Reload Window**.
+
 ## Connect the JoomPulse MCP (required)
 
 To use these skills you first need to connect the **JoomPulse MCP** — it provides the live market data they run on, and without it the skills won't work.

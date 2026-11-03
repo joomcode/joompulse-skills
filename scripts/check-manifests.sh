@@ -13,7 +13,8 @@ note() {
   fail=1
 }
 
-for f in .claude-plugin/plugin.json .claude-plugin/marketplace.json; do
+for f in .claude-plugin/plugin.json .claude-plugin/marketplace.json \
+  .cursor-plugin/plugin.json .mcp.json mcp.json; do
   python3 -c "import json,sys; json.load(open('$f'))" \
     || note "$f is not valid JSON"
 done
@@ -42,6 +43,27 @@ done
 changelog_version=$(grep -m1 -oE '^## [0-9]+\.[0-9]+\.[0-9]+' CHANGELOG.md | awk '{print $2}')
 [ "$plugin_version" = "$changelog_version" ] \
   || note "version differs: plugin.json '$plugin_version' vs newest CHANGELOG entry '$changelog_version'"
+
+# The Cursor manifest ships the same skills, so it carries the same version and
+# repository. Its name and homepage are its own.
+read -r cursor_version cursor_repo <<<"$(python3 -c "
+import json
+d = json.load(open('.cursor-plugin/plugin.json'))
+print(d.get('version'), d.get('repository'))
+")"
+[ "$cursor_version" = "$plugin_version" ] \
+  || note "version differs: .cursor-plugin/plugin.json '$cursor_version' vs plugin.json '$plugin_version'"
+[ "$cursor_repo" = "$repo_url" ] \
+  || note "URL '$cursor_repo' in .cursor-plugin/plugin.json does not match $repo_url"
+
+# Claude Code reads .mcp.json and Cursor reads mcp.json; both must point at the
+# same servers.
+python3 -c "
+import json, sys
+claude = {k: v.get('url') for k, v in json.load(open('.mcp.json'))['mcpServers'].items()}
+cursor = {k: v.get('url') for k, v in json.load(open('mcp.json'))['mcpServers'].items()}
+sys.exit(claude != cursor)
+" || note ".mcp.json and mcp.json declare different MCP servers"
 
 # The plugin name is a permanent identifier: renaming it breaks existing installs.
 # CHANGELOG.md is exempt because it records the rename itself.
