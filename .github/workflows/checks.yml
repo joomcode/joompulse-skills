@@ -5,6 +5,12 @@ on:
     branches: [main]
   pull_request:
 
+# The checks live here, not in scripts/: the Claude plugin directory refuses
+# scripts from organizations that are not Verified.
+defaults:
+  run:
+    shell: bash
+
 jobs:
   checks:
     runs-on: ubuntu-latest
@@ -12,10 +18,159 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Public-safety grep
-        run: bash scripts/check-public-safety.sh
+        run: |
+          set -euo pipefail
 
+          patterns=(
+            "/Users/"
+            "datasci/junk"
+            "joom-team.slack.com"
+            "joom-team.atlassian.net"
+            "notion.so/joomteam"
+            "admin.joom"
+            "vault"
+            "secret"
+            "token"
+            "password"
+            "GIT_PASSWORD"
+            "GOOGLE_APPLICATION_CREDENTIALS"
+          )
+
+          for pattern in "${patterns[@]}"; do
+            if grep -RIn \
+              --exclude-dir=.git \
+              --exclude="checks.yml" \
+              --exclude="CONTRIBUTING.md" \
+              --exclude="SECURITY.md" \
+              --exclude="PULL_REQUEST_TEMPLATE.md" \
+              "$pattern" .; then
+              echo "Public-safety check failed for pattern: $pattern" >&2
+              exit 1
+            fi
+          done
+
+          echo "Public-safety grep passed."
+
+      # Checks the plugin manifests stay consistent with each other, the
+      # repository, and the changelog. Version drift and stale repository URLs
+      # are the two things that most often break a plugin submission.
       - name: Manifest and skill consistency
-        run: bash scripts/check-manifests.sh
+        run: |
+          set -euo pipefail
+
+          repo="joomcode/joompulse-skills"
+          repo_url="https://github.com/${repo}"
+          fail=0
+
+          note() {
+            echo "FAIL: $*" >&2
+            fail=1
+          }
+
+          for f in .claude-plugin/plugin.json .claude-plugin/marketplace.json \
+            .cursor-plugin/plugin.json .mcp.json mcp.json; do
+            python3 -c "import json,sys; json.load(open('$f'))" \
+              || note "$f is not valid JSON"
+          done
+
+          read -r plugin_name plugin_version plugin_home plugin_repo <<<"$(python3 -c "
+          import json
+          d = json.load(open('.claude-plugin/plugin.json'))
+          print(d.get('name'), d.get('version'), d.get('homepage'), d.get('repository'))
+          ")"
+
+          read -r entry_name entry_version entry_home entry_repo <<<"$(python3 -c "
+          import json
+          d = json.load(open('.claude-plugin/marketplace.json'))['plugins'][0]
+          print(d.get('name'), d.get('version'), d.get('homepage'), d.get('repository'))
+          ")"
+
+          [ "$plugin_name" = "$entry_name" ] \
+            || note "name differs: plugin.json '$plugin_name' vs marketplace entry '$entry_name'"
+          [ "$plugin_version" = "$entry_version" ] \
+            || note "version differs: plugin.json '$plugin_version' vs marketplace entry '$entry_version'"
+
+          for url in "$plugin_home" "$plugin_repo" "$entry_home" "$entry_repo"; do
+            [ "$url" = "$repo_url" ] || note "URL '$url' does not match $repo_url"
+          done
+
+          changelog_version=$(grep -m1 -oE '^## [0-9]+\.[0-9]+\.[0-9]+' CHANGELOG.md | awk '{print $2}')
+          [ "$plugin_version" = "$changelog_version" ] \
+            || note "version differs: plugin.json '$plugin_version' vs newest CHANGELOG entry '$changelog_version'"
+
+          # The Cursor manifest ships the same skills, so it carries the same
+          # version and repository. Its name and homepage are its own.
+          read -r cursor_version cursor_repo <<<"$(python3 -c "
+          import json
+          d = json.load(open('.cursor-plugin/plugin.json'))
+          print(d.get('version'), d.get('repository'))
+          ")"
+          [ "$cursor_version" = "$plugin_version" ] \
+            || note "version differs: .cursor-plugin/plugin.json '$cursor_version' vs plugin.json '$plugin_version'"
+          [ "$cursor_repo" = "$repo_url" ] \
+            || note "URL '$cursor_repo' in .cursor-plugin/plugin.json does not match $repo_url"
+
+          # Claude Code reads .mcp.json and Cursor reads mcp.json; both must
+          # point at the same servers.
+          python3 -c "
+          import json, sys
+          claude = {k: v.get('url') for k, v in json.load(open('.mcp.json'))['mcpServers'].items()}
+          cursor = {k: v.get('url') for k, v in json.load(open('mcp.json'))['mcpServers'].items()}
+          sys.exit(claude != cursor)
+          " || note ".mcp.json and mcp.json declare different MCP servers"
+
+          # The plugin name is a permanent identifier: renaming it breaks
+          # existing installs. CHANGELOG.md is exempt because it records the
+          # rename itself.
+          grep -rIn --exclude-dir=.git --exclude=checks.yml --exclude=CHANGELOG.md \
+            'joomcode/pulse-skills' . \
+            && note "found references to the old joomcode/pulse-skills path"
+
+          python3 - "$plugin_name" <<'PY' || fail=1
+          import glob, os, re, sys
+
+          plugin_name = sys.argv[1]
+          ok = True
+          for path in sorted(glob.glob("skills/*/SKILL.md")):
+              directory = os.path.basename(os.path.dirname(path))
+              text = open(path).read()
+              match = re.match(r"^---\n(.*?)\n---", text, re.S)
+              if not match:
+                  print(f"FAIL: {path} has no YAML frontmatter", file=sys.stderr)
+                  ok = False
+                  continue
+              front = match.group(1)
+
+              name = re.search(r"^name:\s*(.+)$", front, re.M)
+              if not name:
+                  print(f"FAIL: {path} has no name", file=sys.stderr)
+                  ok = False
+              elif name.group(1).strip().strip("\"'") != directory:
+                  print(f"FAIL: {path} name does not match its directory", file=sys.stderr)
+                  ok = False
+
+              desc = re.search(r"^description:\s*(.*?)(?=^\w[\w-]*:|\Z)", front, re.S | re.M)
+              if not desc:
+                  print(f"FAIL: {path} has no description", file=sys.stderr)
+                  ok = False
+              else:
+                  collapsed = " ".join(desc.group(1).split()).strip("\"'")
+                  if len(collapsed) > 1024:
+                      print(
+                          f"FAIL: {path} description is {len(collapsed)} chars (limit 1024)",
+                          file=sys.stderr,
+                      )
+                      ok = False
+
+          sys.exit(0 if ok else 1)
+          PY
+
+          if [ "$fail" -ne 0 ]; then
+            echo "Manifest check failed." >&2
+            exit 1
+          fi
+
+          echo "Manifest check passed (plugin ${plugin_name} ${plugin_version})."
 
       - name: Claude plugin validate
         run: |
